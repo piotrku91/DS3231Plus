@@ -1,0 +1,7 @@
+
+SetFullTime	KEYWORD2
+SetTime	KEYWORD2
+SetDate	KEYWORD2
+DelayRTCLock	KEYWORD2
+GetStringTime	KEYWORD2
+
