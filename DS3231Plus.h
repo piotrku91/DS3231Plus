@@ -21,6 +21,7 @@ void DelayRTCLock(const int& Miliseconds);
 
 // Get functions
 String GetTimeString(bool ShowDate=true,bool ShowDow=true,bool ShowTime=true);
+String GetPureTimeString(bool ShowDate=true,bool ShowTime=true);
 String GetAlarmStatusString();
 
 // Set functions

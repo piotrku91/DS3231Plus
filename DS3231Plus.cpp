@@ -70,6 +70,42 @@ if (ShowTime) {
   return TimeStamp;
 }
 
+
+String DS3231Plus::GetPureTimeString(bool ShowDate,bool ShowTime)
+{
+    String TimeStamp;
+    int h= getHour(h12,PM);
+    int m= getMinute();
+    int s= getSecond();
+    int y= getYear();
+    int mo= getMonth(Century); 
+    int d= getDate();
+
+    
+// Date
+if (ShowDate) {
+     TimeStamp+=y;
+     if (mo<10) TimeStamp+="0";
+     TimeStamp+=mo;
+      if (d<10) TimeStamp+="0";
+     TimeStamp+=d;
+}
+ 
+
+// Time
+if (ShowTime) {
+  if (h<10) TimeStamp+="0";
+  TimeStamp+=h;
+  if (m<10) TimeStamp+="0";
+  TimeStamp+=m;
+  if (s<10) TimeStamp+="0";
+  TimeStamp+=s;
+
+};
+  
+  return TimeStamp;
+}
+
 void DS3231Plus::SetFullTime(const int& Year, const int& Month, const int& Day, const int& DayOfWeek, const int& Hour, const int& Minute, const int& Second)
 {
   setYear(Year);
