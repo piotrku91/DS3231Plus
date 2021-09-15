@@ -4,17 +4,47 @@
 
 void DS3231Plus::DelayRTCLock(const int& Miliseconds,void (*func_todo)())
 {
-   setA1Time(getDoW(), getHour(h12,PM), getMinute(), getSecond()+(Miliseconds/1000), 0x0, true, false, false);
+   long int seconds=Miliseconds/1000;
+   int hr = (seconds) / (60 * 60);
+   int  sec = seconds % 60;
+   int  min = (seconds - sec) / 60 % 60;
+
+  int SecSum=0,MinSum=0,HourSum=0;
+
+  SecSum += sec + getSecond();
+  if (SecSum>59) {MinSum++; SecSum-=60; };
+  MinSum += min + getMinute();
+   if (MinSum>59) {HourSum++; MinSum-=60; };
+   HourSum += hr+  getHour(h12,PM);
+  
+
+   setA1Time(getDoW(), HourSum, MinSum, SecSum, 0x0, true, false, false);
    turnOnAlarm(1);
       while (!checkIfAlarm(1)) {func_todo(); delay(1000);};
 };
 
 void DS3231Plus::DelayRTCLock(const int& Miliseconds)
 {
-   setA1Time(getDoW(), getHour(h12,PM), getMinute(), getSecond()+(Miliseconds/1000), 0x0, true, false, false);
+ long int seconds=Miliseconds/1000;
+   int hr = (seconds) / (60 * 60);
+   int  sec = seconds % 60;
+   int  min = (seconds - sec) / 60 % 60;
+
+  int SecSum=0,MinSum=0,HourSum=0;
+
+  SecSum += sec + getSecond();
+  if (SecSum>59) {MinSum++; SecSum-=60; };
+  MinSum += min + getMinute();
+   if (MinSum>59) {HourSum++; MinSum-=60; };
+   HourSum += hr+  getHour(h12,PM);
+  
+
+   setA1Time(getDoW(), HourSum, MinSum, SecSum, 0x0, true, false, false);
    turnOnAlarm(1);
-      while (!checkIfAlarm(1)) {delay(1000);}
+      while (!checkIfAlarm(1)) { delay(1000);};
 };
+
+
 
 
 String DS3231Plus::GetAlarmStatusString()
