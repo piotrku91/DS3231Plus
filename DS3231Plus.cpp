@@ -2,7 +2,7 @@
 
 /* My extension of DS3231 library (https://github.com/NorthernWidget/DS3231) */
 
-void DS3231Plus::DelayRTCLock(const int& Miliseconds,void (*func_todo)())
+void DS3231Plus::DelayRTCLock(const long int& Miliseconds,void (*func_todo)())
 {
    long int seconds=Miliseconds/1000;
    int hr = (seconds) / (60 * 60);
@@ -23,7 +23,7 @@ void DS3231Plus::DelayRTCLock(const int& Miliseconds,void (*func_todo)())
       while (!checkIfAlarm(1)) {func_todo(); delay(1000);};
 };
 
-void DS3231Plus::DelayRTCLock(const int& Miliseconds)
+void DS3231Plus::DelayRTCLock(const long int& Miliseconds)
 {
  long int seconds=Miliseconds/1000;
    int hr = (seconds) / (60 * 60);
