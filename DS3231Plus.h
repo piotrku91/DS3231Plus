@@ -16,7 +16,7 @@ DS3231Plus(DS3231Plus&)=delete;
 DS3231Plus(DS3231Plus&&)=delete; 
 
 // Delay and call functions
-void DelayRTCLock(const long int& Miliseconds,void (*func_todo)());
+void DelayRTCLock(const long int& Miliseconds,bool (*func_todo)());
 void DelayRTCLock(const long int& Miliseconds);
 
 // Get functions
